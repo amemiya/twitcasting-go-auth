@@ -8,11 +8,11 @@ jobs:
       run:
         working-directory: twitcasting
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           submodules: recursive
       - name: Set up golang
-        uses: actions/setup-go@v3
+        uses: actions/setup-go@v5
         with:
           go-version: '1.22.1'
       - name: Install staticcheck
@@ -23,3 +23,7 @@ jobs:
         run: go test ./...
       - name: Staticcheck
         run: staticcheck ./...
+      - name: golangci-lint
+        uses: golangci/golangci-lint-action@v6
+        with:
+          version: v1.58
